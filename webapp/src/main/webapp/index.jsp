@@ -1,7 +1,7 @@
 <html>    
 <head>    
     <meta charset="utf-8">    
-    <title>www.teja.com</title>    
+    <title>www.tej.com</title>    
 </head>    
 <font color="#A6ACAF" size="5">    
     <marquee><b><i>THANKS FOR WATCHING</i></b></marquee>    
