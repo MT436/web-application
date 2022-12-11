@@ -1,6 +1,6 @@
 node{ 
     stage 'Build'
-    sh 'mvn /var/lib/jenkins/workspace/pipeline 2/pom.xml clean package'
+    sh 'mvn /var/lib/jenkins/workspace/hello-world/pom.xml clean package'
     echo 'build is complete'
     //can be built with sonar in the same content
 
@@ -8,7 +8,7 @@ node{
     stage("SonarQube analysis") {
           node {
               withSonarQubeEnv('sonar') {
-                 sh 'mvn /var/lib/jenkins/workspace/pipeline 2/pom.xml sonar:sonar'
+                 sh 'mvn /var/lib/jenkins/workspace/hello-world/pom.xm sonar:sonar'
 //it creates sonar project if we want we can add quality using snippet
               }    
           }
