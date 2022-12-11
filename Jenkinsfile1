@@ -1,0 +1,13 @@
+node{
+stage('SonarQube analysis') {
+              withSonarQubeEnv('sonar') {
+                 sh 'mvn clean package sonar:sonar'
+//it creates sonar project if we want we can add quality using snippet
+          }
+      }
+stage 'Docker'
+sshPublisher(publishers: [sshPublisherDesc(configName: 'docker', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''cd ./project jenkins-docker/
+docker build -t project3;
+docker run -d --name projec3-pipeline -p 8085:8080 project3;
+''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: '/project jenkins-docker/', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+}
