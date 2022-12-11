@@ -1,10 +1,8 @@
 node{ 
-   stage("SonarQube analysis") {
-          node {
+   stage('SonarQube analysis') {
               withSonarQubeEnv('sonar') {
-                 sh 'mvn /var/lib/jenkins/workspace/hello-world/pom.xm clean package sonar:sonar'
+                 sh 'mvn clean package sonar:sonar'
 //it creates sonar project if we want we can add quality using snippet
-              }    
           }
       }
     
