@@ -4,6 +4,7 @@ stage 'MVN'
 sh 'mvn clean package'
 
 stage 'Docker'
-sshPublisher(publishers: [sshPublisherDesc(configName: 'docker', sshRetry: [retries: 3, retryDelay: 10], transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''docker build -t new:v1;
-docker run -d --name example -p 8086:8080 new:v1 /bin/bash;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: './project4', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
+sshPublisher(publishers: [sshPublisherDesc(configName: 'docker', transfers: [sshTransfer(cleanRemote: false, excludes: '', execCommand: '''cd project4;
+docker build -t new;
+docker run -d --name new -p 8085:8080 new /bin/bash;''', execTimeout: 120000, flatten: false, makeEmptyDirs: false, noDefaultExcludes: false, patternSeparator: '[, ]+', remoteDirectory: 'project4', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*.war')], usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)])
 }
