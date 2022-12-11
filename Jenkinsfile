@@ -1,6 +1,6 @@
 node{ 
     stage 'Build'
-    sh 'mvn clean package'
+    sh 'mvn -f */pom.xml clean package'
     echo 'build is complete'
     //can be built with sonar in the same content
 
@@ -8,7 +8,7 @@ node{
     stage("SonarQube analysis") {
           node {
               withSonarQubeEnv('sonar') {
-                 sh 'mvn sonar:sonar'
+                 sh 'mvn -f */pom.xml sonar:sonar'
 //it creates sonar project if we want we can add quality using snippet
               }    
           }
